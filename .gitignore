@@ -4,4 +4,4 @@
 *.project
 *.tern-project
 *.metadata
-*.bin
+bin/
