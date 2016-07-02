@@ -36,6 +36,11 @@ public class ParkHereExecutor {
 
 	public void findRegNoForColorCars(String color) {
 		List<Spot> spots = spotService.findSpotByCarColor(color);
+		System.out.println();
+		if(0 == spots.size()){
+			System.out.println("Not Found");
+			return;
+		}
 		for (Spot s : spots) {
 			Vehicle v = s.getVehical();
 			System.out.print(v.getNumber()+"\t");
