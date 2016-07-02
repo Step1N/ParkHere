@@ -1,6 +1,8 @@
 package com.parkhere.executors;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -89,7 +91,16 @@ public class InputFileReader {
 	
 	public static void main(String[] args) throws IOException {
 		InputFileReader in = new InputFileReader();
-		in.readInputFile("E:/SearchCoderWS/ParkHere/documentation/Input.txt");
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Enter File Path");
+		String filePath = br.readLine();
+		if (filePath.trim().equals("") || null == filePath) {
+			//E:/SearchCoderWS/ParkHere/documentation/Input.txt
+			System.out.println("File Path Required");
+			return;
+		}
+		
+		in.readInputFile(filePath);
 	}
 
 }
