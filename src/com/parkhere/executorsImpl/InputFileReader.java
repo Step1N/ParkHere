@@ -1,4 +1,4 @@
-package com.parkhere.executors;
+package com.parkhere.executorsImpl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,13 +22,19 @@ public class InputFileReader {
 			"\n5.Reg No For Color Vehical\t registration_numbers_for_cars_with_colour 'color of vehicle'" +
 			"\n6.Reg No For Color Vehical\t slot_numbers_for_cars_with_colour 'color of vehicle'" +
 			"\n7.Reg No For Color Vehical\t slot_number_for_registration_number 'reg no of vehicle'";
-	ParkHereExecutor exe;
+	ParkHereExecutorImpl exe;
 	public InputFileReader(){
-		exe = new ParkHereExecutor();
+		exe = new ParkHereExecutorImpl();
 	}
 	
-	public void readInputFile(String filePath) throws IOException{
-		Scanner sc = new Scanner(Paths.get(filePath));
+	@SuppressWarnings("resource")
+	public void readInputFile(String filePath) throws ParkHereException {
+		Scanner sc;
+		try {
+			sc = new Scanner(Paths.get(filePath));
+		} catch (IOException e) {
+			throw new ParkHereException("Error while writing flie", e);
+		}
 		while(sc.hasNextLine()){
 			String line = sc.nextLine();
 			triggerExecutor(line);
@@ -92,7 +98,7 @@ public class InputFileReader {
 		}
 	}
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, ParkHereException {
 		InputFileReader in = new InputFileReader();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("Do you have a file containing input say Y for Yes or N for No");
