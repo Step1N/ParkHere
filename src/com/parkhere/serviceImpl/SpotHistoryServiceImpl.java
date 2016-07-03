@@ -14,7 +14,7 @@ public class SpotHistoryServiceImpl implements SpotHistoryService{
 		List<ParkingTime> parkingTimes = new ArrayList<ParkingTime>();
 		for (List<ParkingTime> parkings : parkingList) {
 			for (ParkingTime pt : parkings) {
-				if (pt.getChekinTime().compareTo(date) < 0) {
+				if (pt.getChekinTime().compareTo(date) <= 0) {
 					parkingTimes.add(pt);
 				}
 			}

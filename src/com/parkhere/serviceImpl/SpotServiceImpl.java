@@ -40,7 +40,7 @@ public class SpotServiceImpl implements SpotService {
 		for (int i = 0; i < numbers; i++) {
 			mapSpot.put(prefix + "-" + i, spot.getSpots().get(i));
 		}
-		System.out.println("Created a parking lot with "+numbers+" slots ");
+		System.out.println("Created a parking lot with "+numbers+" slots");
 	}
 	
 
@@ -120,7 +120,7 @@ public class SpotServiceImpl implements SpotService {
 		return spots;
 	}
 	
-	
+	//TODO
 	public void unParkVehicle(Vehicle vehicle){
 		//TODO Find Payment Due
 		//TODO Find Any Maintenance any due
@@ -136,7 +136,7 @@ public class SpotServiceImpl implements SpotService {
 		}
 	}
 	
-	public void createParkingTime(Spot spot, Vehicle vehicle){
+	private void createParkingTime(Spot spot, Vehicle vehicle){
 		ParkingTime pt = new ParkingTime();
 		pt.setChekinTime(new Date());
 		pt.setVehicle(vehicle);
@@ -184,7 +184,7 @@ public class SpotServiceImpl implements SpotService {
 		return driverVerified;
 	}
 	
-	public Spot findSpotByID(List<Spot> spots, String sID){
+	private Spot findSpotByID(List<Spot> spots, String sID){
 		Spot existingSpot = new Spot();
 		for(Spot s :spots){
 			if(s.getId().equals(sID)){
@@ -194,12 +194,13 @@ public class SpotServiceImpl implements SpotService {
 		
 		return existingSpot;
 	}
+	
 	@Override
 	public List<Spot> findSpotByVehicleType(List<Spot>spots, String type){
 		List<Spot>freeSpot = new ArrayList<Spot>();
 		for (Spot s : spots){
 			if(s.getIsFree() && s.getIsAdvanceBooking()){
-				if(s.getType().equals(SpotType.valueOf(type))){
+				if(s.getVehical().getType().equals(SpotType.valueOf(type))){
 					freeSpot.add(s);
 				}
 			}
@@ -208,8 +209,7 @@ public class SpotServiceImpl implements SpotService {
 		return freeSpot;
 	}
 	
-	@Override
-	public boolean checkForAdvanceBooking(Spot s){
+	private boolean checkForAdvanceBooking(Spot s){
 		if(s.getIsAdvanceBooking()){
 			return true;
 		}
@@ -217,8 +217,7 @@ public class SpotServiceImpl implements SpotService {
 		return false;
 	}
 	
-	@Override
-	public Person generateDriverDetails(int contactNumber, String name, String lID, String emailID){
+	private Person generateDriverDetails(int contactNumber, String name, String lID, String emailID){
 		Person driver = new Person();
 		driver.setDlID(lID);
 		driver.setEmailID(emailID);
@@ -228,8 +227,7 @@ public class SpotServiceImpl implements SpotService {
 		return driver;
 	}
 	
-	@Override
-	public Vehicle generateVehicleDetails(String number, String color, Person driver){
+	private Vehicle generateVehicleDetails(String number, String color, Person driver){
 		Vehicle vehicle = new Vehicle();
 		vehicle.setColor(color);
 		vehicle.setNumber(number);
@@ -244,8 +242,8 @@ public class SpotServiceImpl implements SpotService {
 		findSpotsStatus(spots);
 	}
 
-	@Override
-	public void findSpotsStatus(List<Spot> spots) {
+	
+	private void findSpotsStatus(List<Spot> spots) {
 		System.out.println("Slot No.\tRegistration No\t Colour");
 		for (Spot s : spots) {
 			if(SpotStatus.OCCUPIED.equals(s.getStatus())){
