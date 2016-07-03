@@ -8,13 +8,13 @@ ParkHere Console Application
 
 2. Run via input file
 ---------------------
-	-a) 	Download jar file 
+	-a) 	Generate jar file 
 	-b)		Open jar file location in CMD
 	-c)		java -jar parkHere.jar
 	-d)		Ans the question as y and provide file path
 3. Run as command
 -----------------
-	-a) 	Download jar file 
+	-a) 	Generate jar file 
 	-b)		Open jar file location in CMD
 	-c)		java -jar parkHere.jar
 	-d)		Ans the question as n and follow the instructions
